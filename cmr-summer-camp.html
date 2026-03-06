@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Summer Camp – Batch 2 | CMR Gandhi Public School</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blush:   #FFE9E7;
+      --crimson: #A02E31;
+      --gold:    #F5C842;
+      --lime:    #C8E05A;
+      --dark:    #2C1A1A;
+      --mid:     #7A3535;
+      --white:   #FFFFFF;
+      --shadow:  0 8px 32px rgba(160,46,49,.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--blush);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(160deg, #fff5f4 0%, var(--blush) 60%, #ffd6d0 100%);
+    }
+
+    .hero-bg-shapes span {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .12;
+      background: var(--crimson);
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .hero-bg-shapes span:nth-child(1){ width:340px;height:340px;top:-80px;left:-100px;animation-delay:0s;}
+    .hero-bg-shapes span:nth-child(2){ width:200px;height:200px;bottom:-40px;right:-60px;animation-delay:2s;background:var(--gold);}
+    .hero-bg-shapes span:nth-child(3){ width:120px;height:120px;top:50%;right:8%;animation-delay:4s;background:var(--lime);opacity:.18;}
+
+    @keyframes float{
+      from{transform:translateY(0) scale(1);}
+      to{transform:translateY(-28px) scale(1.07);}
+    }
+
+    .topbar {
+      position: absolute; top:0; left:0; right:0;
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 18px 5%;
+      background: rgba(255,255,255,.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid rgba(160,46,49,.12);
+      z-index:10;
+    }
+    .topbar-logo {
+      display:flex; align-items:center; gap:10px;
+    }
+    .topbar-logo .badge {
+      width:44px; height:44px; border-radius:50%;
+      background: var(--crimson);
+      display:flex;align-items:center;justify-content:center;
+      color:#fff; font-weight:900; font-size:13px; letter-spacing:.5px;
+    }
+    .topbar-logo span {
+      font-family:'Baloo 2',cursive; font-size:15px; font-weight:700;
+      color:var(--crimson); line-height:1.2;
+    }
+    .topbar-cta {
+      background:var(--crimson); color:#fff;
+      border:none; border-radius:50px;
+      padding:10px 24px; font-weight:800; font-size:14px;
+      cursor:pointer; letter-spacing:.3px;
+      transition: background .2s, transform .15s;
+      text-decoration:none;
+    }
+    .topbar-cta:hover{ background:#7d2124; transform:scale(1.04);}
+
+    .hero-content {
+      text-align:center; padding: 140px 5% 60px;
+      max-width:820px; position:relative; z-index:2;
+      animation: fadeUp .9s ease both;
+    }
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(36px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+
+    .badge-pill {
+      display:inline-block;
+      background:var(--crimson); color:#fff;
+      border-radius:50px; padding:6px 20px;
+      font-size:13px; font-weight:800; letter-spacing:1.5px;
+      text-transform:uppercase; margin-bottom:22px;
+      animation: fadeUp .7s .1s ease both;
+    }
+
+    .hero h1 {
+      font-family:'Baloo 2',cursive;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight:800; line-height:1.15;
+      color:var(--crimson);
+      margin-bottom:16px;
+      animation: fadeUp .7s .2s ease both;
+    }
+    .hero h1 span { color: var(--dark); }
+
+    .hero-sub {
+      font-size:clamp(1rem,2.5vw,1.22rem);
+      color:var(--mid); font-weight:600; margin-bottom:36px;
+      animation: fadeUp .7s .3s ease both;
+    }
+
+    .info-pills {
+      display:flex; flex-wrap:wrap; gap:14px; justify-content:center;
+      margin-bottom:40px;
+      animation: fadeUp .7s .4s ease both;
+    }
+    .info-pill {
+      background:#fff; border:2px solid var(--crimson);
+      border-radius:50px; padding:11px 24px;
+      display:flex; align-items:center; gap:8px;
+      font-weight:700; font-size:14px; color:var(--dark);
+      box-shadow: 0 3px 12px rgba(160,46,49,.10);
+    }
+    .info-pill .icon { font-size:18px; }
+    .info-pill strong { color:var(--crimson); }
+
+    .activity-tags {
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+      margin-bottom:44px;
+      animation: fadeUp .7s .5s ease both;
+    }
+    .activity-tag {
+      background:var(--blush); border:1.5px solid rgba(160,46,49,.25);
+      border-radius:12px; padding:9px 18px;
+      font-size:13px; font-weight:700; color:var(--dark);
+      display:flex; align-items:center; gap:7px;
+    }
+    .activity-tag .dot {
+      width:8px;height:8px;border-radius:50%;
+      background:var(--crimson); display:inline-block;
+    }
+
+    .hero-cta {
+      display:inline-block;
+      background:var(--crimson); color:#fff;
+      border-radius:50px; padding:18px 52px;
+      font-family:'Baloo 2',cursive; font-size:1.15rem; font-weight:800;
+      text-decoration:none; letter-spacing:.5px;
+      box-shadow: 0 6px 28px rgba(160,46,49,.32);
+      transition: transform .18s, box-shadow .18s, background .18s;
+      animation: fadeUp .7s .6s ease both;
+    }
+    .hero-cta:hover {
+      transform:translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 36px rgba(160,46,49,.38);
+      background:#7d2124;
+    }
+
+    .fee-note {
+      margin-top:18px; font-size:14px; color:var(--mid);
+      font-weight:600;
+      animation: fadeUp .7s .7s ease both;
+    }
+    .fee-note strong { color:var(--crimson); font-size:1.05rem; }
+
+    /* FEATURES STRIP */
+    .features {
+      background:var(--crimson);
+      color:#fff;
+      padding: 28px 5%;
+      display:flex; flex-wrap:wrap; gap:0;
+      justify-content:center;
+    }
+    .feature-item {
+      display:flex; align-items:center; gap:10px;
+      padding:10px 28px;
+      font-weight:700; font-size:15px;
+      border-right:1.5px solid rgba(255,255,255,.2);
+    }
+    .feature-item:last-child{ border-right:none; }
+    .feature-item .fi { font-size:20px; }
+
+    section { padding: 72px 5%; }
+    .section-label {
+      text-align:center; margin-bottom:12px;
+      font-size:12px; font-weight:800; letter-spacing:2px;
+      text-transform:uppercase; color:var(--crimson);
+    }
+    .section-title {
+      text-align:center;
+      font-family:'Baloo 2',cursive;
+      font-size: clamp(1.7rem,4vw,2.6rem);
+      font-weight:800; color:var(--dark); margin-bottom:10px;
+    }
+    .section-sub {
+      text-align:center; color:var(--mid);
+      font-size:1rem; font-weight:600;
+      max-width:540px; margin:0 auto 48px;
+    }
+
+    /* ACTIVITIES */
+    .activities { background:#fff; }
+    .activities-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap:20px; max-width:900px; margin:0 auto;
+    }
+    .act-card {
+      background:var(--blush);
+      border-radius:20px; padding:30px 20px;
+      text-align:center;
+      border:2px solid transparent;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .act-card:hover {
+      border-color:var(--crimson);
+      transform:translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+    .act-card .act-icon { font-size:2.4rem; margin-bottom:12px; }
+    .act-card h3 { font-size:1rem; font-weight:800; color:var(--dark); }
+    .act-card p { font-size:.85rem; color:var(--mid); margin-top:6px; font-weight:600; }
+
+    /* WHY CHOOSE */
+    .why { background:linear-gradient(135deg, var(--blush) 0%, #ffd8d5 100%); }
+    .why-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:24px; max-width:980px; margin:0 auto;
+    }
+    .why-card {
+      background:#fff; border-radius:20px; padding:28px 24px;
+      box-shadow: 0 4px 20px rgba(160,46,49,.09);
+      display:flex; gap:16px; align-items:flex-start;
+      transition: transform .2s;
+    }
+    .why-card:hover{ transform:translateY(-4px); }
+    .why-icon {
+      min-width:48px; height:48px; border-radius:14px;
+      background:var(--crimson); color:#fff;
+      display:flex; align-items:center; justify-content:center;
+      font-size:22px;
+    }
+    .why-card h4 { font-size:1rem; font-weight:800; margin-bottom:5px; }
+    .why-card p { font-size:.875rem; color:var(--mid); font-weight:600; line-height:1.55; }
+
+    /* REGISTRATION FORM */
+    .register { background:#fff; padding: 80px 5%; }
+    .form-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--blush);
+      border-radius: 28px;
+      padding: 50px 48px;
+      box-shadow: 0 16px 60px rgba(160,46,49,.14);
+      border: 2px solid rgba(160,46,49,.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .form-wrap::before {
+      content:'';
+      position:absolute; top:-60px; right:-60px;
+      width:220px; height:220px; border-radius:50%;
+      background:var(--crimson); opacity:.07;
+      pointer-events:none;
+    }
+
+    .form-title {
+      font-family:'Baloo 2',cursive;
+      font-size:1.9rem; font-weight:800;
+      color:var(--crimson); margin-bottom:6px;
+      text-align:center;
+    }
+    .form-desc {
+      text-align:center; color:var(--mid);
+      font-size:.95rem; font-weight:600;
+      margin-bottom:32px;
+    }
+
+    .form-row {
+      display:grid; gap:18px;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom:18px;
+    }
+    .form-row.full { grid-template-columns:1fr; }
+
+    .field { display:flex; flex-direction:column; gap:7px; }
+    .field label {
+      font-size:.82rem; font-weight:800;
+      color:var(--dark); letter-spacing:.4px;
+      text-transform:uppercase;
+    }
+    .field input, .field select, .field textarea {
+      background:#fff;
+      border: 2px solid rgba(160,46,49,.18);
+      border-radius:12px;
+      padding:13px 16px;
+      font-family:'Nunito',sans-serif;
+      font-size:.95rem; font-weight:600;
+      color:var(--dark);
+      outline:none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color:var(--crimson);
+      box-shadow: 0 0 0 3px rgba(160,46,49,.13);
+    }
+    .field input::placeholder, .field textarea::placeholder {
+      color:#c0a0a0; font-weight:600;
+    }
+    .field select {
+      appearance:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23A02E31' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat:no-repeat; background-position:right 14px center; padding-right:40px;
+    }
+    .field textarea { resize:vertical; min-height:90px; }
+
+    .checkbox-group {
+      display:flex; flex-wrap:wrap; gap:12px;
+      margin-bottom:18px;
+    }
+    .check-label {
+      display:flex; align-items:center; gap:8px;
+      cursor:pointer; font-size:.9rem; font-weight:700;
+      background:#fff; border:2px solid rgba(160,46,49,.18);
+      border-radius:10px; padding:8px 14px;
+      transition:border-color .2s;
+    }
+    .check-label:has(input:checked) { border-color:var(--crimson); background:#fff5f4; }
+    .check-label input[type=checkbox] {
+      accent-color:var(--crimson);
+      width:16px; height:16px; cursor:pointer;
+    }
+    .checkbox-title {
+      font-size:.82rem; font-weight:800;
+      color:var(--dark); letter-spacing:.4px;
+      text-transform:uppercase; margin-bottom:10px;
+    }
+
+    .submit-btn {
+      width:100%; background:var(--crimson);
+      color:#fff; border:none; border-radius:14px;
+      padding:17px; font-family:'Baloo 2',cursive;
+      font-size:1.1rem; font-weight:800;
+      cursor:pointer; letter-spacing:.4px;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 5px 20px rgba(160,46,49,.28);
+      margin-top:8px;
+    }
+    .submit-btn:hover {
+      background:#7d2124;
+      transform:translateY(-2px);
+      box-shadow: 0 10px 28px rgba(160,46,49,.34);
+    }
+    .submit-btn:active { transform:scale(.98); }
+
+    .privacy-note {
+      text-align:center; font-size:.78rem;
+      color:var(--mid); margin-top:14px;
+      font-weight:600;
+    }
+
+    .error-msg {
+      color: #c0392b; font-size:.82rem; font-weight:700;
+      margin-top:4px; display:none;
+    }
+    .field.has-error input,
+    .field.has-error select {
+      border-color:#c0392b;
+    }
+    .field.has-error .error-msg { display:block; }
+
+    .success-box {
+      display:none; text-align:center;
+      padding:40px 20px;
+      animation: fadeUp .6s ease both;
+    }
+    .success-box .tick { font-size:4rem; margin-bottom:16px; }
+    .success-box h3 {
+      font-family:'Baloo 2',cursive; font-size:1.8rem;
+      color:var(--crimson); margin-bottom:10px;
+    }
+    .success-box p { color:var(--mid); font-weight:600; line-height:1.7; }
+
+    /* CONTACT */
+    .contact {
+      background:var(--crimson); color:#fff;
+      text-align:center; padding:56px 5%;
+    }
+    .contact h2 {
+      font-family:'Baloo 2',cursive;
+      font-size:clamp(1.6rem,4vw,2.4rem);
+      font-weight:800; margin-bottom:10px;
+    }
+    .contact p { opacity:.88; font-size:1rem; font-weight:600; margin-bottom:28px; }
+    .contact-nums {
+      display:flex; flex-wrap:wrap; gap:16px; justify-content:center;
+    }
+    .contact-num {
+      background:rgba(255,255,255,.15);
+      border:2px solid rgba(255,255,255,.3);
+      border-radius:50px; padding:14px 32px;
+      font-size:1.05rem; font-weight:800;
+      color:#fff; text-decoration:none;
+      transition:background .2s;
+    }
+    .contact-num:hover{ background:rgba(255,255,255,.28); }
+
+    footer {
+      background:var(--dark); color:rgba(255,255,255,.6);
+      text-align:center; padding:24px 5%;
+      font-size:.85rem; font-weight:600;
+    }
+    footer strong { color:#fff; }
+
+    .float-cta {
+      position:fixed; bottom:24px; right:24px; z-index:100;
+      background:var(--crimson); color:#fff;
+      border-radius:50px; padding:14px 28px;
+      font-weight:800; font-size:.95rem;
+      text-decoration:none;
+      box-shadow: 0 6px 24px rgba(160,46,49,.4);
+      display:flex; align-items:center; gap:8px;
+      animation: popIn .5s 1.2s cubic-bezier(.34,1.56,.64,1) both;
+      transition: transform .18s, box-shadow .18s, opacity .3s;
+    }
+    .float-cta:hover{
+      transform:translateY(-3px);
+      box-shadow: 0 12px 32px rgba(160,46,49,.46);
+    }
+    @keyframes popIn{
+      from{opacity:0;transform:scale(.7) translateY(20px);}
+      to{opacity:1;transform:scale(1) translateY(0);}
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:680px){
+      .form-wrap{ padding:34px 22px; }
+      .form-row{ grid-template-columns:1fr; }
+      .topbar-logo span{ display:none; }
+      .feature-item{ border-right:none; border-bottom:1px solid rgba(255,255,255,.15); width:100%; justify-content:center;}
+      .float-cta .label{ display:none; }
+    }
+    @media(max-width:480px){
+      .info-pill{ padding:9px 16px; font-size:13px; }
+      .activity-tag{ font-size:12px; }
+    }
+
+    /* scroll reveal */
+    .reveal { opacity:0; transform:translateY(30px); transition: opacity .6s, transform .6s; }
+    .reveal.visible { opacity:1; transform:none; }
+  </style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-logo">
+    <div class="badge">CMR</div>
+    <span>CMR Gandhi<br>Public School</span>
+  </div>
+  <a href="#register" class="topbar-cta">Register Now &rarr;</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-shapes">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="hero-content">
+    <div class="badge-pill">&#127881; Batch 2 Now Open!</div>
+    <h1>Summer Camp <span>is Here!</span></h1>
+    <p class="hero-sub">Give your child a fun-filled &amp; skill-building summer<br>at CMR Gandhi Public School</p>
+
+    <div class="info-pills">
+      <div class="info-pill">
+        <span class="icon">&#128197;</span>
+        <div><strong>4 May &ndash; 22 May</strong></div>
+      </div>
+      <div class="info-pill">
+        <span class="icon">&#9200;</span>
+        <div><strong>9:00 AM &ndash; 12:00 PM</strong></div>
+      </div>
+      <div class="info-pill">
+        <span class="icon">&#128205;</span>
+        <div><strong>CMR Gandhi Public School</strong></div>
+      </div>
+    </div>
+
+    <div class="activity-tags">
+      <div class="activity-tag"><span class="dot"></span>Art &amp; Craft</div>
+      <div class="activity-tag"><span class="dot"></span>Zumba</div>
+      <div class="activity-tag"><span class="dot"></span>Fun Games</div>
+      <div class="activity-tag"><span class="dot"></span>Karate</div>
+      <div class="activity-tag"><span class="dot"></span>Math, Science &amp; English</div>
+    </div>
+
+    <a href="#register" class="hero-cta">Register Your Child Now &#128640;</a>
+    <p class="fee-note">Fee: <strong>&#8377;3,950</strong> (Transport Extra) &nbsp;&middot;&nbsp; Limited Seats Available!</p>
+  </div>
+</section>
+
+<div class="features">
+  <div class="feature-item"><span class="fi">&#127885;</span> Expert Trainers</div>
+  <div class="feature-item"><span class="fi">&#128274;</span> Safe Environment</div>
+  <div class="feature-item"><span class="fi">&#128218;</span> Academic + Sports</div>
+  <div class="feature-item"><span class="fi">&#128102;</span> All Age Groups</div>
+  <div class="feature-item"><span class="fi">&#127891;</span> Certificate on Completion</div>
+</div>
+
+<section class="activities">
+  <p class="section-label reveal">What We Offer</p>
+  <h2 class="section-title reveal">Activities &amp; Learning</h2>
+  <p class="section-sub reveal">Every day packed with energy, creativity, and growth.</p>
+  <div class="activities-grid">
+    <div class="act-card reveal">
+      <div class="act-icon">&#127912;</div>
+      <h3>Art &amp; Craft</h3>
+      <p>Creativity through colors, clay, and more</p>
+    </div>
+    <div class="act-card reveal">
+      <div class="act-icon">&#128131;</div>
+      <h3>Zumba</h3>
+      <p>Fun fitness with music &amp; movement</p>
+    </div>
+    <div class="act-card reveal">
+      <div class="act-icon">&#127918;</div>
+      <h3>Fun Games</h3>
+      <p>Team-building games &amp; outdoor play</p>
+    </div>
+    <div class="act-card reveal">
+      <div class="act-icon">&#129355;</div>
+      <h3>Karate &amp; More</h3>
+      <p>Discipline, focus &amp; self-defense</p>
+    </div>
+    <div class="act-card reveal">
+      <div class="act-icon">&#128208;</div>
+      <h3>Math &amp; Science</h3>
+      <p>Engaging STEM activities &amp; experiments</p>
+    </div>
+    <div class="act-card reveal">
+      <div class="act-icon">&#128218;</div>
+      <h3>English Skills</h3>
+      <p>Reading, speaking &amp; creative writing</p>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <p class="section-label reveal">Why Us</p>
+  <h2 class="section-title reveal">Why CMR Gandhi Summer Camp?</h2>
+  <p class="section-sub reveal">Trusted by hundreds of families for a joyful, safe, and productive summer.</p>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">&#128104;&#8205;&#127979;</div>
+      <div>
+        <h4>Qualified Instructors</h4>
+        <p>Trained professionals ensuring the best learning experience for every child.</p>
+      </div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">&#128737;</div>
+      <div>
+        <h4>Safe &amp; Supervised</h4>
+        <p>Full supervision throughout the camp with a safe, structured school campus.</p>
+      </div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">&#127919;</div>
+      <div>
+        <h4>Holistic Development</h4>
+        <p>Physical, creative, and academic activities for all-round growth.</p>
+      </div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">&#128176;</div>
+      <div>
+        <h4>Affordable Fee</h4>
+        <p>Quality summer experience at just &#8377;3,950 for 3 weeks of enrichment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="register" id="register">
+  <div class="form-wrap">
+    <div id="form-area">
+      <h2 class="form-title">&#127958; Register Now</h2>
+      <p class="form-desc">Fill in the details below &mdash; our team will confirm your seat shortly!</p>
+
+      <div class="form-row">
+        <div class="field" id="f-childName">
+          <label>Child's Full Name *</label>
+          <input type="text" id="childName" placeholder="e.g. Arjun Sharma" />
+          <span class="error-msg">Please enter the child's name</span>
+        </div>
+        <div class="field" id="f-classGrade">
+          <label>Age / Class *</label>
+          <select id="classGrade">
+            <option value="">Select Class</option>
+            <option>Nursery / KG</option>
+            <option>Class 1 &ndash; 3</option>
+            <option>Class 4 &ndash; 6</option>
+            <option>Class 7 &ndash; 9</option>
+            <option>Class 10+</option>
+          </select>
+          <span class="error-msg">Please select the class</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field" id="f-parentName">
+          <label>Parent / Guardian Name *</label>
+          <input type="text" id="parentName" placeholder="Full name" />
+          <span class="error-msg">Please enter parent name</span>
+        </div>
+        <div class="field">
+          <label>Relation to Child</label>
+          <select id="relation">
+            <option value="">Select</option>
+            <option>Father</option>
+            <option>Mother</option>
+            <option>Guardian</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field" id="f-mobile">
+          <label>Mobile Number *</label>
+          <input type="tel" id="mobile" placeholder="10-digit mobile" maxlength="10" />
+          <span class="error-msg">Enter a valid 10-digit number</span>
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="your@email.com" />
+        </div>
+      </div>
+
+      <div class="form-row full">
+        <div class="field">
+          <label>Residential Address</label>
+          <input type="text" id="address" placeholder="Area / Locality, City" />
+        </div>
+      </div>
+
+      <p class="checkbox-title">Activities of Interest</p>
+      <div class="checkbox-group">
+        <label class="check-label"><input type="checkbox" value="Art & Craft" /> &#127912; Art &amp; Craft</label>
+        <label class="check-label"><input type="checkbox" value="Zumba" /> &#128131; Zumba</label>
+        <label class="check-label"><input type="checkbox" value="Fun Games" /> &#127918; Fun Games</label>
+        <label class="check-label"><input type="checkbox" value="Karate" /> &#129355; Karate</label>
+        <label class="check-label"><input type="checkbox" value="Math & Science" /> &#128208; Math &amp; Science</label>
+        <label class="check-label"><input type="checkbox" value="English" /> &#128218; English</label>
+      </div>
+
+      <div class="form-row full">
+        <div class="field">
+          <label>Transport Required?</label>
+          <select id="transport">
+            <option value="">Select</option>
+            <option>Yes &ndash; need transport</option>
+            <option>No &ndash; self-drop</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row full">
+        <div class="field">
+          <label>Any Special Note / Query</label>
+          <textarea id="note" placeholder="E.g. medical conditions, questions about the camp..."></textarea>
+        </div>
+      </div>
+
+      <button class="submit-btn" onclick="handleSubmit()">Submit Registration &#128640;</button>
+      <p class="privacy-note">&#128274; Your information is confidential and used only for camp registration.</p>
+    </div>
+
+    <div class="success-box" id="success-box">
+      <div class="tick">&#127881;</div>
+      <h3>You're Registered!</h3>
+      <p>Thank you! Our team will call you within 24 hours to confirm your child's seat.<br><br>
+        For immediate queries, call <strong>8861202600</strong> or <strong>9980486091</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Got Questions? Call Us!</h2>
+  <p>Our admissions team is happy to help you &mdash; Mon to Sat, 9 AM to 5 PM</p>
+  <div class="contact-nums">
+    <a href="tel:8861202600" class="contact-num">&#128222; 8861202600</a>
+    <a href="tel:9980486091" class="contact-num">&#128222; 9980486091</a>
+  </div>
+</section>
+
+<footer>
+  <strong>CMR Gandhi Public School</strong> &nbsp;&middot;&nbsp; Summer Camp Batch 2 &nbsp;&middot;&nbsp; 4 May &ndash; 22 May 2025<br>
+  <span style="font-size:.75rem;opacity:.7;">&copy; 2025 CMR Gandhi Public School. All rights reserved.</span>
+</footer>
+
+<a href="#register" class="float-cta">
+  <span>&#9998;</span>
+  <span class="label">Register Free</span>
+</a>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Mobile digits only
+  document.getElementById('mobile').addEventListener('input', function(){
+    this.value = this.value.replace(/\D/g,'');
+  });
+
+  function setError(fieldId, show) {
+    const el = document.getElementById(fieldId);
+    if (!el) return;
+    if (show) el.classList.add('has-error');
+    else el.classList.remove('has-error');
+  }
+
+  function handleSubmit() {
+    const childName  = document.getElementById('childName').value.trim();
+    const parentName = document.getElementById('parentName').value.trim();
+    const grade      = document.getElementById('classGrade').value;
+    const mobile     = document.getElementById('mobile').value.trim();
+
+    let valid = true;
+
+    setError('f-childName', !childName);
+    if (!childName) valid = false;
+
+    setError('f-parentName', !parentName);
+    if (!parentName) valid = false;
+
+    setError('f-classGrade', !grade);
+    if (!grade) valid = false;
+
+    const mobileOk = mobile.length === 10 && /^\d+$/.test(mobile);
+    setError('f-mobile', !mobileOk);
+    if (!mobileOk) valid = false;
+
+    if (!valid) {
+      document.querySelector('.has-error input, .has-error select')?.focus();
+      return;
+    }
+
+    const formArea = document.getElementById('form-area');
+    formArea.style.transition = 'opacity .4s';
+    formArea.style.opacity = '0';
+    setTimeout(() => {
+      formArea.style.display = 'none';
+      const s = document.getElementById('success-box');
+      s.style.display = 'block';
+    }, 400);
+  }
+
+  // Hide float CTA near form
+  const formSection = document.getElementById('register');
+  const floatCta = document.querySelector('.float-cta');
+  const formObs = new IntersectionObserver(entries => {
+    floatCta.style.opacity = entries[0].isIntersecting ? '0' : '1';
+    floatCta.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'auto';
+  }, { threshold: 0.3 });
+  formObs.observe(formSection);
+</script>
+</body>
+</html>
