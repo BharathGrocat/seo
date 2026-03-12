@@ -1,87 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Appointment Confirmed</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Confirmed</title>
 
-<!-- GA4 Tag -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KG8JS1BY11"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KG8JS1BY11"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-KG8JS1BY11');
 
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-KG8JS1BY11');
-</script>
+        (function () {
+            let params = new URLSearchParams(window.location.search);
 
-<style>
+            let utm_source = params.get("utm_source") || sessionStorage.getItem("utm_source") || "";
+            let utm_medium = params.get("utm_medium") || sessionStorage.getItem("utm_medium") || "";
+            let utm_campaign = params.get("utm_campaign") || sessionStorage.getItem("utm_campaign") || "";
 
-body{
-font-family:Arial;
-background:#f4f4f4;
-padding:40px;
-text-align:center;
-}
+            let original_referrer = sessionStorage.getItem("original_referrer") || "";
+            let source = "Direct Search";
 
-.box{
-max-width:500px;
-margin:auto;
-background:#fff;
-padding:40px;
-border-radius:6px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
+            if (utm_source) {
+                source = utm_source;
+            } else if (original_referrer.includes("google.")) {
+                source = "Organic Search";
+            } else if (original_referrer) {
+                source = "Referral";
+            }
 
-</style>
+            if (!sessionStorage.getItem("lead_event_fired")) {
+                gtag('event', 'generate_lead', {
+                    lead_source: source,
+                    utm_source: utm_source,
+                    utm_medium: utm_medium,
+                    utm_campaign: utm_campaign,
+                    form_name: "Appointment Booking",
+                    booking_status: "success"
+                });
 
+                sessionStorage.setItem("lead_event_fired", "true");
+            }
+        })();
+    </script>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .box {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
-
 <body>
-
-<div class="box">
-
-<h2>Appointment Booked Successfully</h2>
-
-<p>Thank you for booking your appointment. Our team will contact you shortly.</p>
-
-</div>
-
-
-<script>
-
-let params = new URLSearchParams(window.location.search);
-
-let utm_source = params.get("utm_source") || "";
-let utm_medium = params.get("utm_medium") || "";
-let utm_campaign = params.get("utm_campaign") || "";
-
-let referrer = document.referrer;
-
-let source = "Direct Search";
-
-if(utm_source){
-source = utm_source;
-}
-else if(referrer.includes("google")){
-source = "Organic Search";
-}
-else if(referrer){
-source = "Referral";
-}
-
-gtag('event','generate_lead',{
-
-lead_source: source,
-utm_source: utm_source,
-utm_medium: utm_medium,
-utm_campaign: utm_campaign,
-form_name: "Appointment Booking",
-booking_status: "success"
-
-});
-
-</script>
-
+    <div class="box">
+        <h2>Appointment Booked Successfully</h2>
+        <p>Thank you for booking your appointment. Our team will contact you shortly.</p>
+    </div>
 </body>
 </html>
