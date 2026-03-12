@@ -72,6 +72,28 @@
 
     </div>
 
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+
+            if (params.get('utm_source')) {
+                sessionStorage.setItem('utm_source', params.get('utm_source'));
+            }
+            if (params.get('utm_medium')) {
+                sessionStorage.setItem('utm_medium', params.get('utm_medium'));
+            }
+            if (params.get('utm_campaign')) {
+                sessionStorage.setItem('utm_campaign', params.get('utm_campaign'));
+            }
+
+            if (!sessionStorage.getItem('original_referrer')) {
+                sessionStorage.setItem('original_referrer', document.referrer || '');
+            }
+
+            sessionStorage.removeItem('lead_event_fired');
+        })();
+    </script>
+
 </body>
 
 </html>
