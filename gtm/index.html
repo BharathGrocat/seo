@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #0073e6;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Book Appointment</h2>
+
+        <form action="confirmation.html" method="GET">
+
+            <input type="text" name="name" placeholder="Patient Name" required>
+
+            <input type="email" name="email" placeholder="Email" required>
+
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+
+            <select name="doctor" required>
+                <option value="">Select Doctor</option>
+                <option value="Dr Yogesh">Dr Yogesh</option>
+                <option value="Dr Kushal">Dr Kushal</option>
+                <option value="Dr Karan">Dr Karan</option>
+            </select>
+
+            <button type="submit">Book Appointment</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
